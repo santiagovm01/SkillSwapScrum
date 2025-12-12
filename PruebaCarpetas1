@@ -1,0 +1,11 @@
+mi-proyecto/
+│
+├── src/
+│   └── main.js
+│
+├── docs/
+│   └── manual.md
+│
+├── .gitignore
+├── README.md
+└── LICENSE
