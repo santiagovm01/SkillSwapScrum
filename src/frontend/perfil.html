@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <?php include '../backend/plantillas/cabecera.php'; ?>
-    
+    <!-- Contenido de cabecera se carga dinámicamente desde cabecera.html -->
+    <div id="cabecera-container"></div>
+
     <main class="perfil-container">
         <div class="perfil-header">
             <div class="perfil-foto">
@@ -151,9 +152,44 @@
         </div>
     </div>
     
-    <?php include '../backend/plantillas/pie.php'; ?>
+    <!-- Contenido de pie se carga dinámicamente desde pie.html -->
+    <div id="pie-container"></div>
     
     <script src="js/perfil.js"></script>
+    <script>
+        // Cargar cabecera y pie de página dinámicamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar cabecera
+            fetch('cabecera.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('cabecera-container').innerHTML = html;
+                    verificarSesion();
+                })
+                .catch(error => console.error('Error al cargar cabecera:', error));
+            
+            // Cargar pie
+            fetch('pie.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('pie-container').innerHTML = html;
+                })
+                .catch(error => console.error('Error al cargar pie:', error));
+        });
+        
+        // Verificar si el usuario ha iniciado sesión
+        function verificarSesion() {
+            fetch('../backend/autenticacion/verificar_sesion.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.sesion_activa) {
+                        document.querySelector('.auth-buttons').style.display = 'none';
+                        document.querySelector('.user-menu').style.display = 'flex';
+                        document.getElementById('userName').textContent = data.nombre_usuario;
+                    }
+                })
+                .catch(error => console.error('Error al verificar sesión:', error));
+        }
+    </script>
 </body>
 </html>
-
