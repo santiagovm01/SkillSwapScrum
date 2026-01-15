@@ -1,4 +1,5 @@
 <?php
+//hacemos la conexion
 session_start();
 require_once '../bd/conexion.php'; 
 
