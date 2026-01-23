@@ -1,21 +1,7 @@
-<<<<<<< HEAD
-=======
 <?php
 //hacemos la conexion
 session_start();
 require_once '../bd/conexion.php'; 
-require_once '../utils/validar_datos.php';
-
-$email = limpiarDato($_POST["email"] ?? '');
-$password = limpiarDato($_POST["password"] ?? '');
-
-$errores = validarLogin($email, $password);
-
-if (!empty($errores)) {
-    $_SESSION['error'] = implode("<br>", $errores);
-    header("Location: ../../frontend/login.html");
-    exit();
-}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"] ?? '');
@@ -57,4 +43,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 ?>
->>>>>>> 59d13c4 (Añade validación de datos y actualiza inicio de sesión)
+
