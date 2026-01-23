@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - SkillSwap</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <!-- Contenido de cabecera se carga dinámicamente desde cabecera.html -->
+    <div id="cabecera-container"></div>
+
+    <main class="perfil-container">
+        <div class="perfil-header">
+            <div class="perfil-foto">
+                <img src="img/default.png" alt="Foto de perfil" id="fotoPerfil">
+                <button class="btn-cambiar-foto" onclick="cambiarFoto()">Cambiar Foto</button>
+            </div>
+            <div class="perfil-info">
+                <h1 id="nombreUsuario">Cargando...</h1>
+                <p id="emailUsuario"></p>
+                <div class="perfil-ubicacion">
+                    <span id="ubicacionTexto">Sin ubicación configurada</span>
+                    <span id="indicadorUbicacion" class="indicador-ubicacion" title="Sin ubicación"></span>
+                </div>
+            </div>
+            <button class="btn-editar-perfil" onclick="abrirModal()">Editar Perfil</button>
+        </div>
+        
+        <div class="perfil-secciones">
+            <section class="seccion-biografia">
+                <h2>Sobre Mí</h2>
+                <p id="biografiaTexto">Cargando biografía...</p>
+            </section>
+            
+            <section class="seccion-habilidades">
+                <h2>Habilidades</h2>
+                <div id="habilidadesContainer">
+                    <p>Cargando habilidades...</p>
+                </div>
+                <button class="btn-agregar-habilidad" onclick="agregarHabilidad()">+ Agregar Habilidad</button>
+            </section>
+            
+            <section class="seccion-ubicacion">
+                <h2>Mi Ubicación</h2>
+                <div class="ubicacion-info">
+                    <div class="ubicacion-coordenadas">
+                        <label>Coordenadas:</label>
+                        <span id="coordenadasTexto">No configuradas</span>
+                    </div>
+                    <div class="ubicacion-texto">
+                        <label>Ciudad:</label>
+                        <span id="ciudadTexto">No especificada</span>
+                    </div>
+                    <div class="ubicacion-pais">
+                        <label>País:</label>
+                        <span id="paisTexto">No especificado</span>
+                    </div>
+                    <div class="ubicacion-visibilidad">
+                        <label>Visible para otros:</label>
+                        <span id="visibilidadTexto">No</span>
+                    </div>
+                </div>
+                <div class="ubicacion-mapa" id="mapa">
+                    <!-- Aquí se mostraría el mapa -->
+                    <p>Mapa de ubicación (integración futura)</p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <!-- Modal de Edición de Perfil -->
+    <div id="modalEdicion" class="modal">
+        <div class="modal-contenido">
+            <div class="modal-header">
+                <h2>Editar Perfil</h2>
+                <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Tabs del modal -->
+                <div class="tabs-edicion">
+                    <button class="tab-btn active" onclick="cambiarTab('datos')">Datos Personales</button>
+                    <button class="tab-btn" onclick="cambiarTab('ubicacion')">Ubicación</button>
+                </div>
+                
+                <!-- Tab de Datos Personales -->
+                <div id="tab-datos" class="tab-contenido active">
+                    <form id="formPerfil">
+                        <div class="form-grupo">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" name="nombre" required minlength="2" maxlength="50">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" readonly disabled>
+                            <small>El email no puede ser modificado</small>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="biografia">Biografía:</label>
+                            <textarea id="biografia" name="biografia" rows="4" placeholder="Cuéntanos sobre ti..."></textarea>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="habilidades">Habilidades (separadas por comas):</label>
+                            <textarea id="habilidades" name="habilidades" rows="3" placeholder="Ej: PHP, JavaScript, Diseño Gráfico..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Tab de Ubicación -->
+                <div id="tab-ubicacion" class="tab-contenido">
+                    <form id="formUbicacion">
+                        <div class="form-grupo">
+                            <label>Ubicación Geográfica:</label>
+                            <div class="botones-ubicacion">
+                                <button type="button" id="btnObtenerUbicacion" class="btn-geo" onclick="obtenerUbicacionActual()">
+                                    📍 Obtener mi ubicación actual
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-grupo">
+                            <label for="latitud">Latitud:</label>
+                            <input type="number" id="latitud" name="latitud" step="0.000001" placeholder="Ej: 40.712800">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="longitud">Longitud:</label>
+                            <input type="number" id="longitud" name="longitud" step="0.000001" placeholder="Ej: -74.006000">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" id="ciudad" name="ciudad" placeholder="Ej: Madrid">
+                        </div>
+                        <div class="form-grupo">
+                            <label for="pais">País:</label>
+                            <input type="text" id="pais" name="pais" placeholder="Ej: España">
+                        </div>
+                        <div class="form-grupo checkbox-ubicacion">
+                            <input type="checkbox" id="mostrar_ubicacion" name="mostrar_ubicacion">
+                            <label for="mostrar_ubicacion">Mostrar mi ubicación a otros usuarios</label>
+                        </div>
+                        <div class="informacion-privacidad">
+                            <p>ℹ️ Tu ubicación solo será visible si habilitas esta opción. 
+                               Las coordenadas exactas nunca se mostrarán, solo la ciudad/país.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                <button class="btn-guardar" onclick="guardarCambios()">Guardar Cambios</button>
+                <button class="btn-eliminar-ubicacion" onclick="eliminarUbicacion()" style="display: none;">Eliminar Ubicación</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contenido de pie se carga dinámicamente desde pie.html -->
+    <div id="pie-container"></div>
+    
+    <script src="js/perfil.js"></script>
+    <script>
+        // Cargar cabecera y pie de página dinámicamente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar cabecera
+            fetch('cabecera.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('cabecera-container').innerHTML = html;
+                    verificarSesion();
+                })
+                .catch(error => console.error('Error al cargar cabecera:', error));
+            
+            // Cargar pie
+            fetch('pie.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('pie-container').innerHTML = html;
+                })
+                .catch(error => console.error('Error al cargar pie:', error));
+        });
+        
+        // Verificar si el usuario ha iniciado sesión
+        function verificarSesion() {
+            fetch('../backend/autenticacion/verificar_sesion.php')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.sesion_activa) {
+                        document.querySelector('.auth-buttons').style.display = 'none';
+                        document.querySelector('.user-menu').style.display = 'flex';
+                        document.getElementById('userName').textContent = data.nombre_usuario;
+                    }
+                })
+                .catch(error => console.error('Error al verificar sesión:', error));
+        }
+    </script>
+</body>
+</html>
