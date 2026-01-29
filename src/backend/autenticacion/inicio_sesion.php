@@ -1,14 +1,17 @@
 <?php
 //hacemos la conexion
 session_start();
-require_once '../bd/conexion.php'; 
+require_once '../bd/conexion.php';
+require_once 'validacion.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"] ?? '');
     $password = trim($_POST["password"] ?? '');
 
-    if (empty($email) || empty($password)) {
-        $_SESSION['error'] = "Todos los campos son obligatorios.";
+    $errores = validarLogin($email, $password);
+
+    if (!empty($errores)) {
+        $_SESSION['error'] = $errores[0]; // Guardamos el primer error encontrado
         header("Location: ../../frontend/login.html");
         exit();
     }
