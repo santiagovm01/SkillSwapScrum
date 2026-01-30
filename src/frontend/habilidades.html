@@ -1,0 +1,39 @@
+<form action="../backend/usuario/habilidades.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="accion" value="crear">
+
+    <input type="text" name="titulo" placeholder="Título de la habilidad" required>
+    <textarea name="descripcion" placeholder="Descripción" required></textarea>
+    <form id="formBusqueda">
+    <input type="text" id="texto" placeholder="Buscar por título...">
+    <select id="categoria">
+        <option value="">Todas las categorías</option>
+        <option value="Tecnología">Tecnología</option>
+        <option value="Idiomas">Idiomas</option>
+        <option value="Arte">Arte</option>
+        <option value="Deporte">Deporte</option>
+    </select>
+    <button type="button" onclick="buscarHabilidades()">Buscar</button>
+</form>
+
+<div id="resultado"></div>
+
+
+    <select name="categoria" required>
+        <option value="">Selecciona categoría</option>
+        <option value="Tecnología">Tecnología</option>
+        <option value="Idiomas">Idiomas</option>
+        <option value="Arte">Arte</option>
+        <option value="Deporte">Deporte</option>
+    </select>
+
+    <select name="nivel" required>
+        <option value="">Nivel</option>
+        <option value="Básico">Básico</option>
+        <option value="Intermedio">Intermedio</option>
+        <option value="Avanzado">Avanzado</option>
+    </select>
+
+    <input type="file" name="imagen">
+
+    <button type="submit">Publicar habilidad</button>
+</form>
