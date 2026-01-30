@@ -106,6 +106,23 @@ CREATE TABLE IF NOT EXISTS notificaciones (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `publicaciones`
+--
+
+CREATE TABLE IF NOT EXISTS publicaciones (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INT NOT NULL,
+  contenido TEXT NOT NULL,
+  titulo VARCHAR(200),
+  tipo ENUM('publicacion', 'intercambio', 'ayuda') DEFAULT 'publicacion',
+  leido TINYINT(1) DEFAULT 0,
+  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `reportes`
 --
 
@@ -212,6 +229,12 @@ ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `publicaciones`
+--
+ALTER TABLE `publicaciones`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `reportes`
 --
 ALTER TABLE `reportes`
@@ -261,6 +284,12 @@ ALTER TABLE `mensajes`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `publicaciones`
+--
+ALTER TABLE `publicaciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
