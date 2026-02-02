@@ -20,3 +20,12 @@ function buscarHabilidades() {
             document.getElementById("resultado").innerHTML = html;
         });
 }
+function solicitarIntercambio(idHabilidad) {
+    fetch("../backend/usuario/intercambio.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `accion=solicitar&id_habilidad=${idHabilidad}`
+    })
+    .then(res => res.text())
+    .then(msg => alert(msg));
+}

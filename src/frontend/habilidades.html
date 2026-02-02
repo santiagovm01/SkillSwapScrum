@@ -36,4 +36,36 @@
     <input type="file" name="imagen">
 
     <button type="submit">Publicar habilidad</button>
+    <button onclick="solicitarIntercambio(ID_HABILIDAD)">Solicitar intercambio</button>
+<div id="solicitudes"></div>
+
+<script>
+fetch("../backend/usuario/gestionar.php?accion=listar")
+    .then(res => res.json())
+    .then(data => {
+        let html = "";
+        data.forEach(s => {
+            html += `
+                <div class="solicitud">
+                    <p>Habilidad: ${s.titulo}</p>
+                    <p>De: ${s.solicitante}</p>
+                    <button onclick="gestionar(${s.id_intercambio}, 'aceptar')">Aceptar</button>
+                    <button onclick="gestionar(${s.id_intercambio}, 'rechazar')">Rechazar</button>
+                </div>
+            `;
+        });
+        document.getElementById("solicitudes").innerHTML = html;
+    });
+
+function gestionar(id, accion) {
+    fetch("../backend/usuario/gestionar.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `accion=${accion}&id_intercambio=${id}`
+    })
+    .then(res => res.text())
+    .then(msg => alert(msg));
+}
+</script>
+
 </form>

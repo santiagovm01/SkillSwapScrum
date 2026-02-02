@@ -3,7 +3,52 @@
  * Gestionar datos del usuario
  * Permite editar perfil, ubicación y otros datos personales
  */
+session_start();
+include("../bd/conexion.php");
+include("../utilidades/notificaciones.php");
 
+$accion = $_POST["accion"] ?? $_GET["accion"] ?? "";
+
+if ($accion === "listar") {
+
+    $id_usuario = $_SESSION["id_usuario"];
+
+    $sql = "SELECT I.id_intercambio, H.titulo, U.nombre AS solicitante
+            FROM Intercambio I
+            JOIN Habilidad H ON I.id_habilidad = H.id_habilidad
+            JOIN Usuario U ON I.id_usuario_solicitante = U.id_usuario
+            WHERE I.id_usuario_receptor = ? AND I.estado = 'pendiente'";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id_usuario);
+    $stmt->execute();
+    $res = $stmt->get_result();
+
+    $solicitudes = [];
+    while ($fila = $res->fetch_assoc()) {
+        $solicitudes[] = $fila;
+    }
+
+    echo json_encode($solicitudes);
+    exit;
+}
+
+if ($accion === "completar" || $accion === "cancelar") {
+
+    $id_intercambio = $_POST["id_intercambio"];
+    $nuevo_estado = $accion === "completar" ? "completado" : "cancelado";
+
+    $sql = "UPDATE Intercambio SET estado = ? WHERE id_intercambio = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $nuevo_estado, $id_intercambio);
+
+    if ($stmt->execute()) {
+        echo "Intercambio marcado como $nuevo_estado";
+    } else {
+        echo "Error al actualizar estado";
+    }
+    session_destroy();
+}
 session_start();
 require_once '../bd/conexion.php';
 
