@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Intercambio - SkillSwap</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/intercambio.js" defer></script>
+</head>
+<body>
+<header class="header">
+    <div class="logo">SkillSwap</div>
+    <nav>
+        <a href="habilidades.html">Habilidades</a>
+        <a href="chat.html">Chat</a>
+        <a href="perfil.html">Perfil</a>
+    </nav>
+</header>
+
+<main class="main">
+    <section class="grid grid-2">
+        <article class="card">
+            <h2>Detalle del intercambio</h2>
+            <p style="color: var(--texto-sec); font-size: 14px;">
+                Aquí puedes mostrar con PHP los datos del intercambio seleccionado (solicitante, destinatario, habilidad, estado...).
+            </p>
+
+            <ul class="lista-simple" style="margin-top: 10px;">
+                <li><strong>Habilidad:</strong> Programación web</li>
+                <li><strong>Solicitante:</strong> usuario_demo</li>
+                <li><strong>Destinatario:</strong> profe_web</li>
+                <li><strong>Estado:</strong> Pendiente</li>
+            </ul>
+
+            <form id="form-iniciar-intercambio"
+                  action="mensajes-aplicacion/iniciar_intercambio.php"
+                  method="post"
+                  style="margin-top: 18px;">
+                <!-- aquí irían ids reales con PHP -->
+                <input type="hidden" name="id_habilidad" value="1">
+                <button type="button" id="btn-iniciar-intercambio" class="btn btn-primario">
+                    Solicitar intercambio
+                </button>
+            </form>
+        </article>
+
+        <article class="card">
+            <h3>Valoraciones</h3>
+            <p style="color: var(--texto-sec); font-size: 14px;">Tras completar el intercambio, los usuarios pueden valorarse.</p>
+
+            <form action="../backend/publicaciones/valorar_usuario.php" method="post" style="margin-top: 10px;">
+                <div class="form-group">
+                    <label for="puntuacion">Puntuación</label>
+                    <select name="puntuacion" id="puntuacion">
+                        <option value="5">5 - Excelente</option>
+                        <option value="4">4 - Muy bien</option>
+                        <option value="3">3 - Bien</option>
+                        <option value="2">2 - Regular</option>
+                        <option value="1">1 - Mal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentario">Comentario</label>
+                    <textarea name="comentario" id="comentario"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-secundario" style="width: 100%;">Enviar valoración</button>
+            </form>
+        </article>
+    </section>
+</main>
+
+<footer class="footer">
+    © 2026 SkillSwap
+</footer>
+</body>
+</html>
+

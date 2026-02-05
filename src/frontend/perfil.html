@@ -1,0 +1,72 @@
+<<<<<<< Updated upstream
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil - SkillSwap</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/perfil.js" defer></script>
+</head>
+<body>
+<header class="header">
+    <div class="logo">SkillSwap</div>
+    <nav>
+        <a href="habilidades.html">Habilidades</a>
+        <a href="chat.html">Chat</a>
+        <a href="notificaciones.html">Notificaciones</a>
+        <a href="../backend/autenticacion/cerrar_sesion.php" class="btn-login">Salir</a>
+    </nav>
+</header>
+
+<main class="main">
+    <section class="grid grid-2">
+        <article class="card">
+            <h2>Mi perfil</h2>
+            <p style="color: var(--texto-sec); font-size: 14px;">Datos básicos del usuario.</p>
+
+            <!-- Aquí tu backend puede rellenar con PHP -->
+            <ul class="lista-simple" style="margin-top: 10px;">
+                <li><strong>Nombre:</strong> <?php /* echo $usuario['nombre']; */ ?></li>
+                <li><strong>Email:</strong> <?php /* echo $usuario['email']; */ ?></li>
+                <li><strong>Ubicación:</strong> <?php /* echo $usuario['ubicacion']; */ ?></li>
+                <li><strong>Descripción:</strong> <?php /* echo $usuario['descripcion']; */ ?></li>
+            </ul>
+        </article>
+
+        <article class="card form-card">
+            <h3>Editar perfil</h3>
+            <form id="form-perfil" action="../backend/usuario/actualizar_perfil.php" method="post">
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación</label>
+                    <input type="text" name="ubicacion" id="ubicacion" placeholder="Ciudad, país">
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea name="descripcion" id="descripcion"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primario" style="width: 100%;">Guardar cambios</button>
+            </form>
+        </article>
+    </section>
+
+    <section class="card" style="margin-top: 30px;">
+        <h3>Mis habilidades publicadas</h3>
+        <p style="color: var(--texto-sec); font-size: 14px;">Listado de habilidades que has creado.</p>
+
+        <!-- Aquí tu backend puede listar habilidades del usuario -->
+        <ul class="lista-simple" style="margin-top: 10px;">
+            <li>Programación web básica</li>
+            <li>Clases de guitarra</li>
+        </ul>
+    </section>
+</main>
+
+<footer class="footer">
+    © 2026 SkillSwap
+</footer>
+</body>
+</html>
+>>>>>>> Stashed changes

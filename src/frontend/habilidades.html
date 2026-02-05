@@ -1,0 +1,94 @@
+<<<<<<< Updated upstream
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Habilidades - SkillSwap</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="header">
+    <div class="logo">SkillSwap</div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="habilidades.html">Habilidades</a>
+        <a href="perfil.html">Perfil</a>
+        <a href="notificaciones.html">Notificaciones</a>
+        <a href="../backend/autenticacion/cerrar_sesion.php" class="btn-login">Salir</a>
+    </nav>
+</header>
+
+<main class="main">
+    <section class="habilidades-header">
+        <div>
+            <h2>Habilidades disponibles</h2>
+            <p style="color: var(--texto-sec); font-size: 14px;">Explora habilidades publicadas por otros usuarios.</p>
+        </div>
+        <a href="#nueva-habilidad" class="btn btn-primario">Publicar habilidad</a>
+    </section>
+
+    <section class="card" style="margin-bottom: 25px;">
+        <form action="../backend/usuario/buscar_usuarios.php" method="get">
+            <div class="form-group">
+                <label for="q">Buscar por título o usuario</label>
+                <input type="text" name="q" id="q" placeholder="Ej: programación, fotografía...">
+            </div>
+        </form>
+    </section>
+
+    <section class="grid grid-3">
+        <!-- Aquí tu backend puede hacer un bucle e imprimir tarjetas -->
+        <article class="card">
+            <h4>Programación web</h4>
+            <p>HTML, CSS, JS desde cero.</p>
+            <p style="font-size: 12px; color: var(--texto-sec);">Por: usuario_demo · Madrid</p>
+            <a href="intercambio.html" class="btn btn-secundario" style="margin-top: 8px;">Ver / solicitar intercambio</a>
+        </article>
+
+        <article class="card">
+            <h4>Clases de guitarra</h4>
+            <p>Aprende acordes, ritmos y canciones.</p>
+            <p style="font-size: 12px; color: var(--texto-sec);">Por: music_lover · Online</p>
+            <a href="intercambio.html" class="btn btn-secundario" style="margin-top: 8px;">Ver / solicitar intercambio</a>
+        </article>
+
+        <article class="card">
+            <h4>Diseño gráfico básico</h4>
+            <p>Canva, composición y redes sociales.</p>
+            <p style="font-size: 12px; color: var(--texto-sec);">Por: creativa · Barcelona</p>
+            <a href="intercambio.html" class="btn btn-secundario" style="margin-top: 8px;">Ver / solicitar intercambio</a>
+        </article>
+    </section>
+
+    <section id="nueva-habilidad" class="card form-card" style="margin-top: 40px;">
+        <h3>Publicar nueva habilidad</h3>
+        <p>Describe lo que ofreces para que otros puedan encontrarte.</p>
+
+        <form action="../backend/usuario/publicar_habilidad.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titulo">Título de la habilidad</label>
+                <input type="text" name="titulo" id="titulo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea name="descripcion" id="descripcion" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="imagen">Imagen (opcional)</label>
+                <input type="file" name="imagen" id="imagen" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn btn-primario" style="width: 100%;">Publicar habilidad</button>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    © 2026 SkillSwap
+</footer>
+</body>
+</html>
+>>>>>>> Stashed changes

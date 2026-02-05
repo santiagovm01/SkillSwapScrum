@@ -1,0 +1,344 @@
+<<<<<<< Updated upstream
+=======
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", system-ui, -apple-system, sans-serif;
+}
+
+/* PALETA DARK MODE */
+:root {
+    --fondo: #050509;
+    --fondo-sec: #0b0b10;
+    --fondo-card: #14141c;
+    --texto: #e5e7eb;
+    --texto-sec: #9ca3af;
+    --primario: #6366f1;
+    --primario-hover: #4f46e5;
+    --error: #ef4444;
+    --ok: #22c55e;
+    --borde: #27272f;
+}
+
+/* BODY */
+body {
+    background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+/* LAYOUT GENERAL */
+.main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
+.header {
+    background: rgba(5, 5, 9, 0.95);
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primario);
+    letter-spacing: 0.05em;
+}
+
+.header nav a {
+    margin-left: 18px;
+    text-decoration: none;
+    color: var(--texto-sec);
+    font-weight: 500;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.header nav a:hover {
+    color: var(--texto);
+}
+
+.btn-login {
+    padding: 8px 16px;
+    background: var(--primario);
+    color: white !important;
+    border-radius: 999px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+/* BOTONES */
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: .2s;
+}
+
+.btn-primario {
+    background: var(--primario);
+    color: white;
+}
+
+.btn-primario:hover {
+    background: var(--primario-hover);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--texto-sec);
+    border: 1px solid var(--borde);
+}
+
+.btn-secundario:hover {
+    border-color: var(--primario);
+    color: var(--texto);
+}
+
+/* HERO INDEX */
+.hero {
+    padding: 80px 20px 40px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.hero span {
+    color: var(--primario);
+}
+
+.hero p {
+    font-size: 16px;
+    color: var(--texto-sec);
+    max-width: 520px;
+    margin: 0 auto 25px;
+}
+
+/* GRID TARJETAS */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+    .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CARD */
+.card {
+    background: radial-gradient(circle at top left, #1f2937 0, #020617 55%);
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid var(--borde);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primario);
+    box-shadow: 0 22px 60px rgba(15,23,42,0.9);
+}
+
+.card h3, .card h4 {
+    margin-bottom: 6px;
+}
+
+.card p {
+    font-size: 14px;
+    color: var(--texto-sec);
+}
+
+/* FORMULARIOS */
+.form-card {
+    max-width: 420px;
+    margin: 40px auto;
+}
+
+.form-card h2 {
+    margin-bottom: 10px;
+}
+
+.form-card p {
+    margin-bottom: 20px;
+    color: var(--texto-sec);
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 13px;
+    color: var(--texto-sec);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 9px 11px;
+    border-radius: 10px;
+    border: 1px solid var(--borde);
+    background: rgba(15, 23, 42, 0.9);
+    color: var(--texto);
+    font-size: 14px;
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primario);
+}
+
+/* MENSAJES */
+.msg-error {
+    color: var(--error);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.msg-ok {
+    color: var(--ok);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+/* LISTADO HABILIDADES */
+.habilidades-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: rgba(99,102,241,0.15);
+    color: var(--primario);
+}
+
+/* CHAT */
+.chat-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 18px;
+}
+
+.chat-list {
+    background: rgba(15,23,42,0.9);
+    border-radius: 14px;
+    border: 1px solid var(--borde);
+    padding: 10px;
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+.chat-window {
+    background: rgba(15,23,42,0.9);
+    border-radius: 14px;
+    border: 1px solid var(--borde);
+    display: flex;
+    flex-direction: column;
+    max-height: 520px;
+}
+
+.chat-mensajes {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    border-top: 1px solid var(--borde);
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input input {
+    flex: 1;
+}
+
+/* BUBBLES */
+.msg {
+    max-width: 70%;
+    padding: 8px 11px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.msg-yo {
+    background: var(--primario);
+    margin-left: auto;
+}
+
+.msg-otro {
+    background: #111827;
+}
+
+/* TABLAS / LISTAS */
+.lista-simple {
+    list-style: none;
+    font-size: 14px;
+}
+
+.lista-simple li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(39,39,47,0.7);
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 18px;
+    font-size: 12px;
+    color: var(--texto-sec);
+    border-top: 1px solid var(--borde);
+    margin-top: 40px;
+    background: rgba(5,5,9,0.95);
+}
+>>>>>>> Stashed changes

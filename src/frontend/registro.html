@@ -1,0 +1,68 @@
+<<<<<<< Updated upstream
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro - SkillSwap</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/validaciones.js" defer></script>
+</head>
+<body>
+<header class="header">
+    <div class="logo">SkillSwap</div>
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="login.html" class="btn-login">Iniciar sesión</a>
+    </nav>
+</header>
+
+<main class="main">
+    <section class="card form-card">
+        <h2>Crear cuenta</h2>
+        <p>Únete a la comunidad de intercambio de habilidades.</p>
+
+<form action="../backend/autenticacion/registro.php"
+              method="post"
+              onsubmit="return validarRegistro(this)">
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" name="nombre" id="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ubicacion">Ubicación</label>
+                <input type="text" name="ubicacion" id="ubicacion" placeholder="Madrid, España">
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción breve</label>
+                <textarea name="descripcion" id="descripcion" placeholder="Cuéntanos qué sabes hacer y qué te interesa."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="contrasena">Contraseña</label>
+                <input type="password" name="contrasena" id="contrasena" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contrasena2">Repetir contraseña</label>
+                <input type="password" name="contrasena2" id="contrasena2" required>
+            </div>
+
+            <button type="submit" class="btn btn-primario" style="width: 100%;">Registrarse</button>
+        </form>
+    </section>
+</main>
+
+<footer class="footer">
+    © 2026 SkillSwap
+</footer>
+</body>
+</html>
+>>>>>>> Stashed changes

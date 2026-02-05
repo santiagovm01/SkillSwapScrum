@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat - SkillSwap</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header class="header">
+    <div class="logo">SkillSwap</div>
+    <nav>
+        <a href="habilidades.html">Habilidades</a>
+        <a href="intercambio.html">Intercambios</a>
+        <a href="perfil.html">Perfil</a>
+    </nav>
+</header>
+
+<main class="main">
+    <h2>Mensajes</h2>
+    <p style="color: var(--texto-sec); font-size: 14px; margin-bottom: 16px;">
+        Conversaciones asociadas a tus intercambios.
+    </p>
+
+    <section class="chat-container">
+        <aside class="chat-list">
+            <!-- Aquí tu backend puede listar intercambios / chats -->
+            <ul class="lista-simple">
+                <li>Intercambio #1 - Programación web</li>
+                <li>Intercambio #2 - Clases de guitarra</li>
+            </ul>
+        </aside>
+
+        <section class="chat-window">
+            <div class="chat-mensajes">
+                <!-- Ejemplo de mensajes -->
+                <div class="msg msg-otro">Hola, ¿cuándo te viene bien empezar?</div>
+                <div class="msg msg-yo">Esta semana por las tardes me va perfecto.</div>
+            </div>
+            <form class="chat-input" action="../backend/chat/enviar_mensaje.php" method="post">
+                <input type="hidden" name="id_intercambio" value="1">
+                <input type="text" name="contenido" placeholder="Escribe un mensaje..." required>
+                <button type="submit" class="btn btn-primario">Enviar</button>
+            </form>
+        </section>
+    </section>
+</main>
+
+<footer class="footer">
+    © 2026 SkillSwap
+</footer>
+</body>
+</html>

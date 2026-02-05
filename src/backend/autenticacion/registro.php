@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream
 session_start();
 require_once '../bd/conexion.php'; // Ajusta la ruta si es necesario
 
@@ -54,5 +55,48 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 } else {
     header("Location: ../../frontend/registro.html");
     exit();
+=======
+// backend/autenticacion/registro.php
+session_start();
+require_once __DIR__ . "/../bd/conexion.php";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $nombre = trim($_POST["nombre"] ?? "");
+    $email = trim($_POST["email"] ?? "");
+    $ubicacion = trim($_POST["ubicacion"] ?? "");
+    $descripcion = trim($_POST["descripcion"] ?? "");
+    $contrasena = $_POST["contrasena"] ?? "";
+    $contrasena2 = $_POST["contrasena2"] ?? "";
+
+    if ($contrasena !== $contrasena2) {
+        $_SESSION["error"] = "Las contraseñas no coinciden.";
+        header("Location: ../../frontend/registro.html");
+        exit;
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION["error"] = "El email no es válido.";
+        header("Location: ../../frontend/registro.html");
+        exit;
+    }
+
+    // Comprobar si ya existe
+    $stmt = $pdo->prepare("SELECT id_usuario FROM Usuario WHERE email = ?");
+    $stmt->execute([$email]);
+    if ($stmt->fetch()) {
+        $_SESSION["error"] = "Ya existe un usuario con ese correo.";
+        header("Location: ../../frontend/registro.html");
+        exit;
+    }
+
+    $hash = password_hash($contrasena, PASSWORD_BCRYPT);
+
+    $stmt = $pdo->prepare("INSERT INTO Usuario (nombre, email, contrasena, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([$nombre, $email, $hash, $ubicacion, $descripcion]);
+
+    $_SESSION["mensaje"] = "Registro completado. Ahora puedes iniciar sesión.";
+    header("Location: ../../frontend/login.html");
+    exit;
+>>>>>>> Stashed changes
 }
 ?>

@@ -1,12 +1,17 @@
 <?php
-//hacemos la conexion
+// backend/autenticacion/inicio_sesion.php
 session_start();
+<<<<<<< Updated upstream
 require_once '../bd/conexion.php'; 
+=======
+require_once __DIR__ . "/../bd/conexion.php";
+>>>>>>> Stashed changes
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST["email"] ?? '');
-    $password = trim($_POST["password"] ?? '');
+    $email = trim($_POST["email"] ?? "");
+    $contrasena = $_POST["contrasena"] ?? "";
 
+<<<<<<< Updated upstream
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Todos los campos son obligatorios.";
         header("Location: ../../frontend/login.html");
@@ -33,13 +38,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: ../../frontend/login.html");
             exit();
         }
+=======
+    $stmt = $pdo->prepare("SELECT * FROM Usuario WHERE email = ?");
+    $stmt->execute([$email]);
+    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($usuario && password_verify($contrasena, $usuario["contrasena"])) {
+        $_SESSION["id_usuario"] = $usuario["id_usuario"];
+        $_SESSION["nombre"] = $usuario["nombre"];
+        $_SESSION["es_admin"] = (bool)$usuario["es_admin"];
+        header("Location: ../../frontend/habilidades.html");
+        exit;
+>>>>>>> Stashed changes
     } else {
-        $_SESSION['error'] = "Usuario no encontrado.";
+        $_SESSION["error"] = "Credenciales incorrectas.";
         header("Location: ../../frontend/login.html");
-        exit();
+        exit;
     }
-} else {
-    header("Location: ../../frontend/login.html");
-    exit();
 }
 ?>
