@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<<<<<<< Updated upstream
-  <meta charset="UTF-8">
-  <title>Login</title>
-</head>
-<body>
-  <h2>Iniciar sesión</h2>
-  <form action="../autenticacion/inicio_sesion.php" method="POST">
-    <input type="email" name="correo" placeholder="Correo" required><br>
-    <input type="password" name="clave" placeholder="Contraseña" required><br>
-    <button type="submit">Entrar</button>
-  </form>
-=======
     <meta charset="UTF-8">
     <title>Iniciar sesión - SkillSwap</title>
     <link rel="stylesheet" href="css/estilos.css">
@@ -32,9 +20,7 @@
         <h2>Iniciar sesión</h2>
         <p>Accede a tus habilidades, intercambios y mensajes.</p>
 
-        <form action="../backend/autenticacion/iniciar_sesion.php"
-              method="post"
-              onsubmit="return validarLogin(this)">
+        <form action="../backend/autenticacion/iniciar_sesion.php" method="post">
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
                 <input type="email" name="email" id="email" required>
@@ -57,6 +43,5 @@
 <footer class="footer">
     © 2026 SkillSwap
 </footer>
->>>>>>> Stashed changes
 </body>
 </html>

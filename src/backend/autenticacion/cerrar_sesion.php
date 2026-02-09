@@ -1,8 +1,13 @@
 <?php
-// backend/autenticacion/cerrar_sesion.php
 session_start();
+
+// Eliminar todas las variables de sesión
 session_unset();
+
+// Destruir la sesión
 session_destroy();
-header("Location: ../../frontend/index.html");
-exit;
+
+// Redirigir al login
+header("Location: ../../frontend/login.html");
+exit();
 ?>

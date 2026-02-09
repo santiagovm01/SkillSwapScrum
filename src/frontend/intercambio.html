@@ -31,16 +31,21 @@
                 <li><strong>Estado:</strong> Pendiente</li>
             </ul>
 
-            <form id="form-iniciar-intercambio"
-                  action="mensajes-aplicacion/iniciar_intercambio.php"
-                  method="post"
-                  style="margin-top: 18px;">
-                <!-- aquí irían ids reales con PHP -->
-                <input type="hidden" name="id_habilidad" value="1">
-                <button type="button" id="btn-iniciar-intercambio" class="btn btn-primario">
-                    Solicitar intercambio
-                </button>
-            </form>
+          <form id="form-iniciar-intercambio"
+      action="../backend/usuario/intercambio.php"
+      method="post"
+      style="margin-top: 18px;">
+
+    <!-- ID REAL DE LA HABILIDAD -->
+    <input type="hidden" name="id_habilidad" value="1">
+
+    <button type="submit" id="btn-iniciar-intercambio" class="btn btn-primario">
+        Solicitar intercambio
+    </button>
+</form>
+
+</form>
+
         </article>
 
         <article class="card">
